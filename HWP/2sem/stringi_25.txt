@@ -1,0 +1,39 @@
+/*
+Задание 1. Дана строка, содержащая последовательность слов, разделенных пробелами. 
+Слова состоят из латинских строчных букв.
+
+25.  Выяснить, верно ли, что среди слов последовательности имеются слова, содержащие все различные буквы,
+входящие в заданное слово (например, если было задано слово “cat”, то подходящие слова – это “active”, “teacher”).
+Вывести все найденные слова или сообщить об их отсутствии.
+*/
+
+#include <iostream>
+#include <string>
+#include <sstream>
+
+using namespace std;
+
+bool caac (string ca1, string ca2) {
+   int c = 0;
+
+   for (auto& i : ca1) {
+      c = 0;
+      for (auto& j : ca2) {
+         if (i == j) c++;
+      }
+      if (!c) return 0;
+   }
+   return 1;
+}
+
+int main() {
+   string spec;
+   cin >> spec;
+
+   string posl;
+   while (cin >> posl) {
+      if (caac(spec, posl)) cout << posl << " ";
+   }
+
+   return 0;
+}

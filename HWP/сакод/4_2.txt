@@ -1,0 +1,39 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+	int s;
+	cin >> s;
+
+	vector <int> v;
+
+	int n;
+	while (s--) {
+		cin >> n;
+		v.push_back(n);
+	}
+
+	for (int i=0; i < v.size(); i++) {
+		cout << v[i] << ' ';
+	}
+
+	cout << '\n';
+
+	int count = 0;
+
+	for(int i=1; i < v.size();i++)     
+		for (int j=i; j>0 && v[j-1] > v[j]; j--) {
+			swap(v[j-1], v[j]);
+			count++;
+		}
+
+	for (int i=0; i < v.size(); i++) {
+		cout << v[i] << ' ';
+	}
+
+	cout << '\n' << count;
+
+	return 0;
+}

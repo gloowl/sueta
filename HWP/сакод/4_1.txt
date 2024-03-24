@@ -1,0 +1,230 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+	int s;
+	cin >> s;
+
+	vector <int> v;
+
+	int n;
+	while (s--) {
+		cin >> n;
+		v.push_back(n);
+	}
+
+	for (int i=0; i < v.size(); i++) {
+		cout << v[i] << ' ';
+	}
+
+	cout << '\n';
+
+	int countSwp = 0;
+	int countCmp = 0;
+
+	for (int j=1; j < v.size(); j++) {
+		for (int i=0; i < v.size()-j; i++) {
+			countCmp++;
+			if (v[i] > v[i+1]) {
+				swap(v[i], v[i+1]);
+				countSwp++;
+			}
+		}
+	}
+
+	for (int i=0; i < v.size(); i++) {
+		cout << v[i] << ' ';
+	}
+
+	cout << '\n' << countCmp << '\t' << countSwp;
+
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------
+
+
+
+
+
+
+
+#include <iostream>
+#include <vector>
+#include <ctime>
+
+using namespace std;
+
+int main() {
+	long long s;
+	cin >> s;
+
+	vector <int> v;
+
+	srand(time(NULL));
+	while (s--) {
+		v.push_back(rand()%101 - 50);
+	}
+
+	// for (int i=0; i < v.size(); i++) {
+	// 	cout << v[i] << ' ';
+	// }
+
+	cout << '\n';
+
+	int countSwp = 0;
+	int countCmp = 0;
+
+	float startTime = clock();
+	for (int j=1; j < v.size(); j++) {
+		for (int i=0; i < v.size()-j; i++) {
+			countCmp++;
+			if (v[i] > v[i+1]) {
+				swap(v[i], v[i+1]);
+				countSwp++;
+			}
+		}
+	}
+	float endTime = clock();
+
+	// for (int i=0; i < v.size(); i++) {
+	// 	cout << v[i] << ' ';
+	// }
+
+	cout << '\n' << countCmp << '\t' << countSwp << '\n' << endTime - startTime;
+
+	return 0;
+}
+
+
+-----------------------
+
+
+
+#include <iostream>
+#include <vector>
+#include <ctime>
+
+using namespace std;
+
+void bubSort(vector <int>& v) {
+	int countSwp, countCmp = 0;
+	
+	for (int j=1; j < v.size(); j++) {
+		for (int i=0; i < v.size()-j; i++) {
+			countCmp++;
+			if (v[i] > v[i+1]) {
+				swap(v[i], v[i+1]);
+				countSwp++;
+			}
+		}
+	}
+
+	cout << countSwp << '\t' << countCmp;
+}
+
+int insSort(vector <int>& v) {
+	int size = v.size();
+	float count = 0;
+
+	for (int i=1; i < size;i++)     
+		for (int j=i; j>0 && v[j-1] > v[j]; j--) {
+			swap(v[j-1], v[j]);
+			count++;
+		}
+	
+	return count;
+}
+
+int shakeSort(vector <int>& v) {
+	int size = v.size();
+	int count = 0;
+
+	int left = 1;
+	int right = size - 1;
+	while (left <= right) {
+		for (int i = right; i >= left; i--) {
+			if (v[i-1] > v[i]) {
+				swap(v[i-1], v[i]);
+				count++;
+			}
+		}
+		left++;
+		
+		for (int i = left; i <= right; i++) {
+			if (v[i] > v[i+1]) {
+				swap(v[i], v[i+1]);
+				count++;
+			}
+		}
+		right--;
+	}
+	
+	return count;
+}
+
+int main() {
+	int s;
+	cin >> s;
+
+	vector <int> v1, v2, v3, v4;
+
+	srand(time(NULL));
+	while (s--) {
+		v1.push_back(rand()%101 - 50);
+		v2.push_back(rand()%101 - 50);
+		v3.push_back(rand()%101 - 50);
+		v4.push_back(rand()%101 - 50);
+	}
+
+	int countSwp = 0;
+
+	float startTime = clock();
+	bubSort(v1);
+	float endTime = clock();
+	
+	cout << '\t' << endTime - startTime << '\n' << '\n';
+
+	startTime = clock();
+	countSwp = insSort(v2);
+	endTime = clock();
+
+	cout << countSwp << '\t' << endTime - startTime << '\n' << '\n';
+
+	countSwp = 0;
+
+	startTime = clock();
+    for (int i = 0; i < v3.size()-1; i++) {
+        int maxj = i;
+        for (int j = i + 1; j < v3.size(); j++)
+            if (v3[j] > v3[maxj]) maxj = j;
+        swap(v3[i], v3[maxj]); 
+        countSwp++;
+    }
+	endTime = clock();
+
+	cout << countSwp << '\t' << endTime - startTime << '\n' << '\n';
+
+	startTime = clock();
+	countSwp = shakeSort(v4);
+	endTime = clock();
+	
+	int shTime = endTime - startTime;
+
+	cout << countSwp << '\t' << shTime << '\n' << '\n';
+
+	return 0;
+}

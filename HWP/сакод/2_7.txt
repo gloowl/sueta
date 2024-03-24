@@ -1,0 +1,69 @@
+#include <iostream>
+#include <queue>
+
+class Stack {
+public:
+    void push(int x) {
+        my_queue.push(x);
+
+        int size = my_queue.size();
+        for (int i = 0; i < size - 1; ++i) {
+            my_queue.push(my_queue.front());
+            my_queue.pop();
+        }
+    }
+
+    int pop() {
+        if (my_queue.empty()) {
+            std::cout << "stack is empty";
+            exit(0);
+        }
+        int top = my_queue.front();
+        my_queue.pop();
+        return top;
+    }
+
+    int top() {
+        if (my_queue.empty()) {
+            std::cout << "stack is empty";
+            exit(0);
+        }
+        return my_queue.front();
+    }
+
+    bool empty() {
+        return my_queue.empty();
+    }
+
+private:
+    std::queue<int> my_queue;
+};
+
+int main() {
+    Stack my_stack;
+
+    my_stack.push(1);
+    my_stack.push(2);
+    my_stack.push(3);
+
+    while (!my_stack.empty()) {
+        std::cout << my_stack.pop() << '\n';  // Выведет 3 2 1
+    }
+    
+    my_stack.push(10);
+    my_stack.push(15);
+
+    int top = my_stack.top();
+    std::cout << top << '\n';
+    my_stack.pop();
+
+    top = my_stack.top();
+    std::cout << top << '\n';
+    my_stack.pop();
+
+    top = my_stack.top();
+    std::cout << top << '\n';
+    my_stack.pop();
+
+    return 0;
+}

@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+int main() {
+    do {
+        //setlocale (LC_ALL, "Russian");
+        int n, mn;
+        cout << "Enter posl-t' chisel > 0 (0 - end): " << endl;
+        do {
+            cin >> mn;
+        } while (mn < 0);
+        while (n) {
+            cin >> n;
+            if ((n > 0) && (n < mn)) mn = n;
+        }
+        cout << "\nMin chislo > 0 iz posl-ti = " << mn << '\n' << endl;
+    } while (true);
+    return 0;
+}

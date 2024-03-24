@@ -1,0 +1,38 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    ifstream input("input.txt");
+
+    if (input) {
+        ofstream output("output.txt");
+
+        vector<int> numbers;
+
+        int number;
+        while (input >> number) {
+            numbers.push_back(number);
+        }
+
+        int sum = 0, count = 0;
+        for (int i=0; i < numbers.size(); i++) {
+            sum += numbers[i];
+            count++;
+
+            if (count == 5 || i == numbers.size()-1) {
+                output << (double)sum/count << " ";
+
+                sum = 0;
+                count = 0;
+            }
+        }
+
+        input.close();
+        output.close();
+    }
+
+    return 0;
+}

@@ -1,0 +1,106 @@
+#include <iostream>
+#include <cmath>
+
+float binSqrt(float n) {
+    if (n<2) {
+        return n;
+    }
+
+    float res;
+    float start = 1;
+    float end = n/2;
+
+    while (start <= end) {
+        float mid = (start + end) / 2.0;
+
+        if (mid*mid == n) {
+            return mid;
+        }
+        else if (mid*mid < n) {
+            start = mid + 1;
+            res = mid;
+        }
+        else {
+            end = mid - 1;
+        }
+    }
+
+    return res;
+}
+
+using namespace std;
+
+int main() {
+    float n;
+    cin >> n;
+
+    // float startTime = clock();
+    cout << binSqrt(n) << '\t';
+    // float endTime = clock();
+
+    // cout << endTime - startTime << '\n';
+
+    // startTime = clock();
+    cout << sqrt(n) << '\t';
+    // endTime = clock();
+
+    // cout << endTime - startTime << '\n';
+
+    return 0;
+}
+
+
+
+
+---------------------------------------------------------------------
+
+
+
+
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+
+double binSqrt(double n, double pr) {
+    // if (n<2) {
+    //     return n;
+    // }
+    double start = 0.0;
+    double end = n;
+
+    double mid;
+    while (end - start > pr) {
+        mid = (start + end) / 2;
+        if (mid*mid < n) {
+            start = mid;
+        }
+        else {
+            end = mid;
+        }
+    }
+
+    // double frPart = 0.1;
+    // for (int i = 0; i < pr; i++) {
+    //     while (res*res <= n)
+    //         res += frPart;
+
+    //     res -= frPart;
+    //     frPart /= 10;
+    // }
+
+    return mid;
+}
+
+using namespace std;
+
+int main() {
+    double n;
+    cin >> n;
+
+    double pr = 1e-8;
+
+    cout << fixed << setprecision(10) << binSqrt(n, pr) << ' ' << sqrt(n) << '\n';
+    cout << binSqrt(n, pr) - sqrt(n);
+
+    return 0;
+}

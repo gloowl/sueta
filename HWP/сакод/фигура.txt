@@ -1,0 +1,44 @@
+#include <iostream>
+#include <cmath>
+
+int main() {
+    int n, a, b, x, y, r;
+    std::cin >> a >> b >> n;
+
+    for (int i = 0; i < n; i++) {
+        bool f = false;
+
+        std::cin >> x >> y;
+        r = sqrt(x*x + y*y);
+
+        if (y > 0) {
+            if (x < 0) {
+                if (r >= b && r <= a)
+                    f = true;
+            }
+
+            else {
+                if (r >= b && x <= a && y <= a)
+                    f = true;
+            }
+        }
+
+        else {
+            if (x >= b || y >= b) {
+                if (x < 0) {
+                    if (x <= a && y <= a)
+                        f = true;
+                }
+
+                else {
+                    if (r <= a)
+                        f = true;
+                }
+            }
+        }
+        
+        std::cout << f << '\n';
+    }
+
+    return 0;
+}

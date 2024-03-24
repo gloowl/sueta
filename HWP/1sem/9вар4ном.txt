@@ -1,0 +1,16 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+int main() {
+    do {
+        int m, k(0), help(4);
+        cout << "Input N: " << endl;
+        cin >> m;
+        while (help < m) {
+            help = pow(4, k);
+            k++;
+        }
+        cout << help/4 << endl;
+    } while (true);
+    return 0;
+}

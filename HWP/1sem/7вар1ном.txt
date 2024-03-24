@@ -1,0 +1,40 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+int main() {
+    do {
+        setlocale(LC_ALL, "");
+        float a, b, c, r(0), ugol;
+        cout << "Vvedite 3 chisla - dlini storon ravnobedrennogo tupougol'nogo trugol'nika:" << endl;
+        cin >> a >> b >> c;
+        if (((a+b)<=c) || ((b+c)<=a) || ((a+c)<=b)) cout << "Ttreugol'nik ne sushchestvuet\n";
+        else {
+            float p = (a+b+c) / 2;
+            float S = sqrt(p * (p-a) * (p-b) * (p-c));
+            if ((a == b) && (c*c > a*a + b*b)) {
+                ugol = 180 - 2*(acos(c / (2*a)) * (180 / 3.14159));
+                r++;
+            }
+            else {
+                if ((a == c) && (b*b > a*a + c*c)) {
+                    ugol = 180 - 2*(acos(b / (2*a)) * (180 / 3.14159));
+                    r++;
+                }
+                else {
+                    if ((b == c) && (a*a > b*b + c*c)) {
+                        ugol = 180 - 2*(acos(a / (2*b)) * (180 / 3.14159));
+                        r++;
+                    }
+                }
+            }
+            if (r && (ugol < 180) && (ugol > 90)) cout << "\nPloshchad' treugol'nika ravna " << S << "\nVelichina tupogo ugla ravna " << ugol << " gradusov";
+            else {
+                    if ((a!=b) && (b!=c) && (a!=c)) cout << "Treugol'nik ne ravnobedrenniy\n";
+                    if ((c*c <= a*a + b*b) || (b*b <= a*a + c*c) || (a*a <= b*b + c*c)) cout << "Treugol'nik ne tupougol'niy\n";
+            }
+        }
+    } while (true);
+    
+    return 0;
+}

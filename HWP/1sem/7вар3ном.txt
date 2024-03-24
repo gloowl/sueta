@@ -1,0 +1,26 @@
+#include <iostream>
+#include <math.h>
+#include <clocale>
+using namespace std;
+
+int main() {
+    do {
+        setlocale(LC_ALL, "rus");
+        float x, y, S;
+        cout << "Vvedite koordinati tochki: \n";
+        cin >> x >> y;
+        S = x*x + y*y;
+        int help = 0;
+        if (y > 0) {
+            if ((S >= 25) && (fabs(x) <= 10) && (y <= 10)) help++;
+        }
+        else {
+            if ((S >= 25) && (S <= 225)) help++;
+        }
+        if (help)
+            cout << "YES" << endl;
+        else
+            cout << "NO" << endl;
+    } while (true);
+    return 0;
+}

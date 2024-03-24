@@ -1,0 +1,56 @@
+/*
+Задание 1. Дана строка, содержащая последовательность слов, разделенных пробелами. 
+Слова состоят из латинских строчных букв.
+
+14.  Определить, какая буква встречается в словах чаще всего. Если таких букв более одной,
+то определить ту, которая находится в алфавите раньше остальных. 
+Вывести все слова, которые содержат эту букву.  
+*/
+
+#include <iostream>
+#include <string>
+#include <sstream>
+
+using namespace std;
+
+void mchw(string s) {
+   int freq[26] = {0}; // массив для хранения частоты встречаемости букв
+   char max_char = 'a';
+   int max_freq = 0;
+
+   for (char c : s) {
+      if (c != ' ') {
+         freq[c - 'a']++;
+      }
+   }
+
+   for (int i = 0; i < 26; i++) {
+      if (freq[i] > max_freq) {
+         max_freq = freq[i];
+         max_char = i + 'a';
+      }
+   }
+
+   cout << "Most frequent letter is: " << max_char << endl;
+   cout << "Words containing this letter:" << endl;
+
+   stringstream out;
+   out << s;
+
+   while (out >> s) {
+      int help = s.find(max_char);
+      if (help != -1) {
+         cout << s << " ";
+      }
+   }
+}
+   
+
+int main() {
+   string str;
+   getline(cin, str); // ввод строки
+
+   mchw(str);
+
+   return 0;
+}

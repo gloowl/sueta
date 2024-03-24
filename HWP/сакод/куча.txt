@@ -1,0 +1,212 @@
+//2
+
+
+
+#include <iostream>
+#include <queue>
+
+using namespace std;
+
+int main()
+{
+    long long n, t1, t2;
+    cin >> n;
+    queue <pair<int,int>> que;
+    for (long long i = 0; i < n; i++) {
+        cin >> t1 >> t2;
+        que.push(make_pair(t1,t2));
+    }
+
+    queue <int> last;
+
+    last.push(que.front().first + que.front().second);
+    que.pop();
+        
+    while(!que.empty()) {
+        last.push(last.back() + que.front().second);
+        que.pop();
+
+    }
+    
+    while (!last.empty()) {
+        cout << last.front() << ' ';
+        last.pop();
+    }
+
+    return 0;
+}
+
+//5
+
+
+
+#include <iostream>
+#include <stack>
+#include <string>
+
+using namespace std;
+
+int main() {
+	string s;
+	cin >> s;
+
+	stack <char> st;
+
+
+	for (char c : s) {
+		if (c >= 'A' and c <= 'Z') {
+			st.push(c);
+		}
+		else {
+			if (!st.empty()) {
+				if (c == st.top() + 32) {
+					st.pop();
+				
+				}
+			}
+			else {
+				cout << "NO";
+				return 0;
+			}
+		}
+	}
+	if (st.empty())
+		cout << "YES";
+
+	else
+		cout << "NO";
+
+
+
+
+
+//4
+
+
+
+#include <iostream>
+#include <list>
+#include <queue>
+#include <time.h>
+
+using namespace std;
+
+void outPut(list <int> s) {
+    for (int n : s)
+        cout << n << ' ';
+    cout << '\n';
+}
+
+int main()
+{
+    long long n, c, m;
+    cin >> n >> m;
+
+    list <int> lst;
+
+    srand(time(NULL));
+
+    while(n--) {
+        lst.push_back(rand()%5000);
+    }
+
+    outPut(lst);
+    
+    auto it = lst.begin();
+
+    int ins;
+    int h = 1;
+
+    while (m--) {
+        cin >> inoutCode >> posIn;
+        advance(it, posIn - h);
+        if (inoutCode) {
+            cin >> posOut;
+            lst.insert(it, posOut);
+            it--;
+        }
+        else {
+            it = lst.erase(it);
+        }
+        
+        h = posIn;
+        outPut(lst);
+    }
+
+    
+    return 0;
+
+}
+
+
+//8
+
+
+
+
+#include<iostream>
+#include<string>
+#include<stack>
+#include<vector>
+#include<iterator>
+#include<list>
+#include <time.h>
+
+using namespace std;
+
+void outPut(list <int> s) {
+    for (int n : s)
+        cout << n << ' ';
+    cout << '\n';
+}
+
+
+
+int main() {
+
+    int n, m;
+    cin >> n;
+
+    list<int> lst;
+
+    srand(time(NULL));
+
+    while (n--) {
+        lst.push_back(rand() % 5000);
+    }
+    
+    outPut(lst);
+
+    cin >> m;
+    int prev = 0;
+    auto it = lst.begin();
+    
+    int moda[4];
+    list<int> put;
+
+    while (m--) {
+        cin >> inoutCode >> posIn >> posOut;
+        advance(it, posIn - prev);
+        prev = posIn;
+        if (inoutCode) {
+            cin >> ins;
+            int help = posOut - posIn + 1;
+            while (help--) {
+                put.push_back(ins);
+            }
+            it = lst.insert(it, put.begin(), put.end());
+            put.clear();
+
+        }
+        else {
+            auto it_end = it;
+            advance(it_end, posOut - prev + 1);
+            it = lst.erase(it, it_end);
+
+        }
+        outPut(lst);
+    }
+    
+    
+    return 0;
+}

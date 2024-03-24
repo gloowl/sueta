@@ -1,0 +1,63 @@
+#include <iostream>
+#include <list>
+#include <time.h>
+
+using namespace std;
+
+void lout(list <int>& v) { 
+    for (int num : v) {
+        cout << num << ' ';
+    }
+
+    cout << '\n';
+}
+
+int main() {
+    long n, m;
+    cin >> n >> m;
+
+    list <int> v;
+
+    srand(time(NULL));
+    while (n--) {
+        v.push_back(rand()%201-100);
+    }
+
+    lout(v);
+    bool editType;
+    int posIn, posOut, inp;
+    auto it = v.begin();
+    int h = 1;
+
+    list<int> put;
+    while (m--) {
+        cout << "Enter code:\t";
+        cin >> editType >> posIn >> posOut;
+        advance(it, posIn-h);
+
+        if (editType) {
+            cin >> inp;
+
+            int help = posOut - posIn + 1;
+            while (help--) {
+                put.push_back(inp);
+            }
+
+            it = v.insert(it, put.begin(), put.end());
+            put.clear();
+        }
+        else {
+            auto it_end = it;
+            advance(it_end, posOut - h);
+            it = v.erase(it, it_end);
+        }
+            
+        h = posIn;
+
+        lout(v);
+    }
+    
+    return 0;
+}  
+
+// первое удаление - полуинтервал

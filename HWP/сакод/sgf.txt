@@ -1,0 +1,178 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+int countVowels(string str) {
+    int count = 0;
+    string vowels = "eyuioaEYUIOA";
+
+    for (char c : str) {
+        if (vowels.find(c) != string::npos) {
+            count++;
+        }
+    }
+
+    return count;
+}
+
+int countS = 0;
+int countC = 0;
+    
+void qsort(vector <string>& arr, int start, int size) {
+    
+    int i = start;
+    int j = size - 1;
+
+    int mid = countVowels(arr[size / 2]);
+
+    do {
+        while (countVowels(arr[i]) < mid)
+            i++;
+        while (countVowels(arr[j]) > mid)
+            j--;
+
+        if (i <= j) {
+            swap(arr[i], arr[j]);
+            countS++;
+            countC++;
+            i++;
+            j--;
+        }
+
+    } while (i <= j);
+
+    if (j > 0) {
+        qsort(arr, 0, j + 1);
+        countC++;
+    }
+    if (i < size) {
+        qsort(arr, i, size - i);
+        countC++;
+    }
+    
+
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    vector <string> str;
+    string word;
+
+    for (int i = 0; i < n; i++) {
+        cin >> word; 
+        str.push_back(word);
+    }
+
+    qsort(str, 0, n);
+
+    for (int i = 0; i < n; i++) {
+        cout << str[i] << ' ';
+    }
+    
+    cout << '\n' << countC << '\t' << countS;
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------------------
+
+
+
+
+
+
+
+
+#include <iostream>
+#include <vector>
+#include <string>
+#include <utility>
+
+using namespace std;
+
+int countVowels(string str) {
+    int count = 0;
+    string vowels = "eyuioaEYUIOA";
+
+    for (char c : str) {
+        if (vowels.find(c) != string::npos) {
+            count++;
+        }
+    }
+
+    return count;
+}
+
+int countS = 0;
+int countC = 0;
+    
+void qsort(vector <pair <string, int>>& arr, int start, int size) {
+    
+    int i = start;
+    int j = size - 1;
+
+    int mid = arr[size / 2].second;
+
+    do {
+        while (arr[i].second < mid)
+            i++;
+        while (arr[j].second > mid)
+            j--;
+
+        if (i <= j) {
+            swap(arr[i], arr[j]);
+            countS++;
+            countC++;
+            i++;
+            j--;
+        }
+
+    } while (i <= j);
+
+    if (j > 0) {
+        qsort(arr, 0, j + 1);
+        countC++;
+    }
+    if (i < size) {
+        qsort(arr, i, size - i);
+        countC++;
+    }
+    
+
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    vector <pair <string, int>> str;
+    pair <string, int> word;
+    for (int i = 0; i < n; i++) {
+        cin >> word.first;
+        word.second = countVowels(word.first);
+        str.push_back(word);
+    }
+
+    qsort(str, 0, n);
+
+    for (int i = 0; i < n; i++) {
+        cout << str[i].first << ' ';
+    }
+    
+    cout << '\n' << countC << '\t' << countS;
+
+    return 0;
+}

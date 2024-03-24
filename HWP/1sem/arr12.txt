@@ -1,0 +1,32 @@
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+using namespace std;
+int main() {
+    do {
+        int N;
+        cout << "Enter N: " << endl;
+        cin >> N;
+        int *X = new int [N];
+        srand(time(NULL));
+        for (int i = 0; i < N; i++) {
+            X[i] = rand()%1000-500; //Присваеваем рандомное значение каждому элементу массива
+            cout << X[i] << ' ';
+        }
+        cout << endl;
+        int mx = X[0];
+        int sum = X[0];
+        for (int i = 1; i < N; i++) {
+            if (X[i] > mx) mx = X[i]; // Определяем максимальное значение
+            sum += X[i];
+        }
+        cout << "Maximum = " << mx << endl;
+        cout << "S.A. = " << (float)sum/N << endl;
+        for (int i = 0; i < N; i++) {
+            if (X[i] == mx) X[i] = sum/N;
+            cout << X[i] << ' ';
+        }
+        cout << '\n' << endl;
+    } while(true);
+    return 0;
+}

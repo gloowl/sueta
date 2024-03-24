@@ -1,0 +1,63 @@
+#include <iostream> 
+#include <vector> 
+#include <math.h> 
+ 
+using namespace std; 
+ 
+typedef long long ll; 
+ 
+ll countHit(vector <int> &arr, int lvl) { 
+    ll cnt = 0; 
+    for (auto i : arr) { 
+        cnt += ceil((double)i / lvl); 
+    } 
+ 
+    return cnt; 
+} 
+ 
+int main() { 
+    int n; 
+    ll stamina; 
+    cin >> n >> stamina; 
+ 
+    if(n > stamina) { 
+        cout << "No" << endl; 
+        return 0; 
+    } 
+ 
+    vector <int > health__monsters; 
+    int a; 
+    int l = 1, 
+        r = 0; 
+    while (n--) { 
+        cin >> a; 
+        if (a > r) r = a; 
+        health__monsters.push_back(a); 
+    } 
+ 
+    while(r - l > 1) { 
+        int mid = (l + r) / 2; 
+        if (stamina == countHit(health__monsters, mid)) { 
+            cout << mid << endl; 
+            return 0; 
+        } 
+        if (stamina - countHit(health__monsters, mid) < 0) { 
+            l = mid; 
+        } 
+        else { 
+            r = mid; 
+        } 
+    } 
+    if (stamina - countHit(health__monsters, l) > 0) { 
+        cout << l << endl; 
+        return 0; 
+    } 
+    else { 
+        cout << r << endl; 
+        return 0; 
+    } 
+ 
+    return 0; 
+} 
+ 
+// 5 10  3 3 5 17 6

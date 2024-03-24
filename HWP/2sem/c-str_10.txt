@@ -1,0 +1,49 @@
+#include <iostream>
+#include <ctype.h>
+#include <string.h>
+
+using namespace std;
+
+void w_Edit(char *arr)
+{
+   cin.getline(arr, 101);
+
+   int f_size = strlen(arr);
+
+   for (int i = 1; i < f_size; i++) 
+   {
+      if (tolower(arr[i]) == 'o' && tolower(arr[i-1]) == 'd')
+      {
+         arr[i] = 'i';
+
+         f_size++;
+         for (int j = f_size; j >= i+1; j--)
+         {
+            arr[j] = arr[j-1];
+         }
+
+         arr[i+1] = 'd';
+         i+=2;
+      }
+   }
+
+   cout << arr << '\n'; 
+}
+
+int main()
+{
+   for (;;)
+   {
+      char s[151];
+
+      cout << "INPUT:\t";
+
+      w_Edit(s);
+   }
+
+   return 0;
+}
+
+/*
+10. Заменить в словах все сочетания  “do” на “did”. Регистр не учитывать.
+*/

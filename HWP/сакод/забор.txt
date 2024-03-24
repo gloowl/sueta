@@ -1,0 +1,16 @@
+#include <iostream>
+
+int main() {
+    long long n, l, w, a, b, x, y;
+    std::cin >> n >> l >> w >> a >> b >> x >> y;
+    long long z = l/(b+y);
+    
+    long long S = 2*n*(a*z*(b+2*x) + 2*w*(l-b*z));
+    
+    if (S%10000)
+        std::cout << S/10000 + 1;
+    else
+        std::cout << S/10000;
+
+    return 0;
+}

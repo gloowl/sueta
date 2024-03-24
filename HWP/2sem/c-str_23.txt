@@ -1,0 +1,76 @@
+/*
+Дана строка, содержащая последовательность различных слов, разделенных пробелами. 
+Слова состоят из строчных русских букв, количество букв в словах не более 15.
+
+23. Определить,  имеются ли в последовательности слова, 
+в которых хотя бы на одной четной позиции находится буква “а”. 
+Если да, то найти из них первое по порядку слово с наименьшей длиной.
+*/
+
+#include <iostream>
+#include <windows.h>
+#include <cctype>
+#include <cstring>
+#include <cstdlib>
+
+using std::cin;
+using std::cout;
+
+bool check_rusA_in_Cstr(char* str, int fSize) {
+   for (int i = 1; i < fSize; i+=2)
+   {
+      if (str[i] == 'а')
+      {
+         return 1;
+      }
+   }
+   
+   return 0;
+}
+
+int main() {
+   SetConsoleCP(1251);
+   SetConsoleOutputCP(1251);
+
+   char str[16];
+   char min[16];
+
+   int str_end, min_size, flag = 0;
+
+   do
+   {
+      cin >> str;
+
+      str_end = strlen(str);
+
+      if (check_rusA_in_Cstr(str, str_end))
+      {
+         flag = 1;
+
+         min_size = str_end;
+         strcpy(min, str);
+
+         break;
+      }
+      
+   } while (!flag);
+
+   while (cin >> str)
+   {
+      str_end = strlen(str);
+
+      if (check_rusA_in_Cstr(str, str_end)) 
+      {
+         if (str_end < min_size)
+         {
+            min_size = str_end;
+            strcpy(min, str);
+         }
+            
+      }
+   }
+
+   cout << min << '\n';
+
+   return 0;
+}

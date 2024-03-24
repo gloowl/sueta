@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+int main() {
+    do {
+        long n, res(0), razr(1);
+        short digit;
+        cout << "Input: ";
+        cin >> n;
+        cout << "Output: ";
+        do {
+            digit = n % 16;
+            if (digit <= 9) cout << digit << '\t';
+            else {
+                switch (digit) {
+                    case 10: cout << 'A'; break;
+                    case 11: cout << 'B'; break;
+                    case 12: cout << 'C'; break;
+                    case 13: cout << 'D'; break;
+                    case 14: cout << 'E'; break;
+                    case 15: cout << 'F'; break;
+                }
+                cout << '\t';
+            }
+            n /= 16;
+        } while (n);
+        cout << '\n' << endl;
+    } while (true);
+    return 0;
+}

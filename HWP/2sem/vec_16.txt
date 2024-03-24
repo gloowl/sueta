@@ -1,0 +1,149 @@
+#include <iostream> 
+#include <vector> 
+#include <algorithm>
+#include <time.h> 
+
+using namespace std;
+
+bool checkIsPrime(int num) {
+    if (num > 0) {
+        if (num == 1) return 0;
+
+        for (int i = 2; i*i <= num; i++) {
+            if (num % i == 0) return 0;
+        }
+
+        return 1;
+    }
+    else return 0;
+}
+
+int countPrime_in_vector(vector <int>& v) {
+    vector <int> ::iterator itr_out = v.begin();
+    int count = 0;
+
+    while (itr_out != v.end()) {
+        if (checkIsPrime(*itr_out)) count++;
+        itr_out++;
+    }
+
+    return count;
+}
+
+void vector_input(vector <int>& v, int size) {
+    bool input_code;
+
+    cout << "Выберите способ ввода [R-1/m-0]:\t";
+    cin >> input_code;
+
+    cout << "Введите последовательность:\t";
+
+    if (input_code) {
+        srand(time(NULL));
+        while (size--) {
+            v.push_back(rand()%41 - 20); 
+        }
+    }
+    else {
+        int i;
+        while (size--) { 
+            cin >> i; 
+            v.push_back(i); 
+        }
+    }
+
+    cout << '\n';
+}
+
+void vector_output(vector <int>& v) { 
+    vector <int> ::iterator itr_out = v.begin(); 
+    while (itr_out != v.end()) { 
+        cout << *itr_out << " "; 
+        itr_out++; 
+    }
+
+    cout << '\n';
+}
+
+void erase(vector <int>& v, int n) {
+    vector <int> ::iterator itr_out = v.begin();
+
+    while (itr_out != v.end()) {
+        if (*itr_out == n) {
+            v.erase(itr_out);
+            itr_out--;
+        }
+        itr_out++;
+    }
+}
+
+int main() 
+{ 
+    setlocale(LC_ALL, "rus");
+
+    vector <int> v; 
+
+    int N; 
+
+    cout << "Введите размер последовательности:\t";
+    cin >> N;
+
+    vector_input(v, N);
+
+    cout << "Последовательность:\t";
+    vector_output(v);
+
+    int count = count_if(v.begin(), v.end(), checkIsPrime);
+    cout << "Количество простых чисел в последовательности:\t" << count << '\n';
+
+    if (count) {
+        vector <int> ::iterator itr_out = v.begin();
+        int mx, mn;
+
+        while (itr_out != v.end()) {
+            if (checkIsPrime(*itr_out)) {
+                mn = *itr_out;
+                mx = *itr_out;
+                break;
+            }
+            itr_out++;
+        }
+
+        while (itr_out != v.end()) {
+            if (checkIsPrime(*itr_out)) {
+                if (*itr_out < mn) mn = *itr_out;
+                if (*itr_out > mx) mx = *itr_out;
+            }
+            itr_out++;
+        }
+
+        cout << "Min = " << mn << "\nMax = " << mx << '\n';
+
+        itr_out = v.begin();
+
+        while (itr_out != v.end()) {
+            if (*itr_out == mn || *itr_out == mx) {
+                v.erase(itr_out);
+            }
+            else itr_out++;
+        }
+    }
+    else {
+        cout << "Простых чисел в последовательности нет";
+        return 0;
+    }
+
+    cout << "Измененная последовательность:\t";
+    vector_output(v);
+
+    return 0; 
+}
+
+/*
+
+При решении задач использовать контейнер vector и обобщенные алгоритмы библиотеки STL.
+Раздел 1 (задачи 1-16). Дана последовательность из N  целых чисел.
+
+16. Подсчитать количество простых чисел. Найти среди них минимальное и максимальное значение.
+Удалить из последовательности все простые числа с минимальным и максимальным значением.
+*/

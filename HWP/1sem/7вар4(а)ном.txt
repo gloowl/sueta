@@ -1,0 +1,44 @@
+#include <iostream>
+#include <math.h>
+#include <clocale>
+using namespace std;
+
+int main() {
+    setlocale(LC_ALL, "rus");
+    float x, y, S, r;
+    do {
+        cout << "ENTER x, y: \n";
+        cin >> x >> y;
+        S = x*x + y*y;
+        if (y >= 0) { // Зоны 2 3 4 5 
+            if (y > 12) { // Зоны 2 4
+                if ((fabs(x) - 12) > 0) { // Зона 2
+                    r = sqrt(pow((fabs(x) - 12), 2) + pow((fabs(y) - 12), 2));
+                }
+                else r = y - 12; // Зона 4
+            }
+            else { // Зоны 3 5
+                if ((fabs(x) - 12) > 0) r = fabs(x) - 12; // Зона 3
+                else {
+                    if ((x > 0) && (x < 6) && (y < 6)) { // Зона 5
+                        r = (6 - x) < (6 - y) ? (6 - x) : (6 - y);
+                        if (x < r) r = x;
+                    }
+                    else r = 0; // Точка в фигуре
+                }
+            }
+        }
+        else { // Зоны 1 6
+            if (S > 144) r = sqrt(S) - 12; // Зона 1
+            else {
+                if ((S < 36) && (x > 0)) { // Зона 6
+                    r = x < (6 - sqrt(S)) ? x : (6 - sqrt(S));
+                } 
+                else r = 0; // Точка в фигуре
+            }
+        }
+        if (r) cout << '\n' << r << endl;
+        else cout << "\nNO" << endl;
+    } while (true);
+    return 0;
+}

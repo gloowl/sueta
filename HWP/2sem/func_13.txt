@@ -1,0 +1,19 @@
+#include <iostream>
+using namespace std;
+
+float term(float start, float finish, float step) {
+    float sum = 0, help;
+
+    for (float i = start; i <= finish; i += step) {
+        help = i / (i + step);
+        sum += help;
+    }
+
+    return sum * sum;
+}
+
+int main() {
+    cout << term(3, 13, 2) + term(5, 12, 1) - term(10, 46, 4);
+
+    return 0;
+}

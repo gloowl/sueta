@@ -1,0 +1,26 @@
+#include <iostream>
+#include <vector>
+#include <set>
+
+using namespace std;
+
+int main() {
+    long n;
+    cin >> n;
+
+    vector <long> v;
+    long num;
+    while(n) {
+        cin >> num;
+        v.push_back(num);
+        n--;
+    }
+
+    set <long> s(v.begin(), v.end());
+
+    cout << s.size() << '\n';
+    for (long i : s)
+        cout << i << ' ';
+
+    return 0;
+}

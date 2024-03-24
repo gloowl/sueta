@@ -1,0 +1,37 @@
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <iomanip>
+using namespace std;
+
+double calculation(double x1, double y1, double x2, double y2, double x3,double y3) {
+    return 0.5 * ((x2 - x1) * (y3 - y1) - (x3 - x1) * (y2 - y1));
+}
+int main()
+{
+    setlocale(LC_ALL,"");
+    int N;
+    cin >> N;
+    vector <pair<double, double>> points(N);
+
+    for (int i = 0; i < N; ++i){
+        cin >> points[i].first >> points[i].second;
+    }
+    double s = 0.0;
+
+    for (int i = 1; i < N - 1; ++i){
+
+        s += calculation(points[0].first, points[0].second, points[i].first, points[i].second, points[i + 1].first, points[i + 1].second);
+    }
+
+    cout << fixed <<setprecision(3)<< abs(s);
+
+}
+/* 5
+0 0.1
+0.2 0.1
+0.3 0
+0.2 -0.1
+-0.1 -0.1
+*/
+

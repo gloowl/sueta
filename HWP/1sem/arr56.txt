@@ -1,0 +1,52 @@
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+#include <math.h>
+using namespace std;
+int main(){
+    do{
+        int N, code;
+        cout << "Enter code (0 or 1): " << endl;
+        cin >> code;
+        cout << "Enter N: " << endl;
+        cin >> N;
+        int *X = new int[N];
+        if(code){
+            srand(time(NULL));
+            for(int i = 0; i < N; i++){
+                X[i] = rand()%1000;   //Рандомный ввод
+            }
+        }
+        else{
+            for(int i = 0; i < N; i++){
+                cout << "Enter X[" << i << "]:\t";  //Ручной ввод
+                cin >> X[i];
+            }
+        }
+        for(int i = 0; i < N; i++){
+            cout << X[i] << ' ';    //Вывод нaчального массива
+        }
+        cout << endl;
+        for(int i=0; i<N; i++){
+            if(abs(X[i]) > 10) {
+                int first(0), n=abs(X[i]);
+                while(n){
+                    first = n%10;
+                    n /= 10;
+                }
+                if(abs(X[i])%10 == first){
+                    for(int j=i; j < N-1; j++){
+                        X[j] = X[j+1];
+                    }
+                    N--;
+                    i--;
+                }
+            }
+        }
+        for(int i=0; i<N; i++){
+            cout << X[i] << ' ';
+        }
+        cout << '\n' << endl;
+    }while(true);
+    return 0;
+}

@@ -1,0 +1,29 @@
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+
+using namespace std;
+
+double prbl(double a, double b, double c, double x) {
+    return a*x*x + b*x + c;
+}
+
+int main() {
+    double a, b, c, l, r;
+    cin >> a >> b >> c >> l >> r;
+    double pr = 0.001;
+
+    while (r-l > pr) {
+        double l1 = l + (r-l)/3;
+        double r1 = r - (r-l)/3;
+
+        if (prbl(a, b, c, l1) < prbl(a, b, c, r1))
+            r = r1;
+        else
+            l = l1;
+    }
+
+    cout << l;
+
+    return 0;
+}

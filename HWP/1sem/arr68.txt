@@ -1,0 +1,97 @@
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+
+using namespace std;
+
+int main(){
+    while(true){
+
+        int N, M, code;
+        
+        cout << "Enter code (0 or 1): " << endl;
+        cin >> code;
+
+        cout << "Enter N: " << endl;
+        cin >> N;
+
+        cout << "Enter M: " << endl;
+        cin >> M;
+
+        int *A = new int[N];
+        int *B = new int[M];
+
+        if(code){
+            srand(time(NULL));
+            for(int i = 0; i < N; i++){
+                A[i] = rand()%21-10;   //Рандомный ввод
+            }
+            for(int i = 0; i < M; i++){
+                B[i] = rand()%21-10;   //Рандомный ввод
+            }
+        }
+        else{
+            for(int i = 0; i < N; i++){
+                cout << "Enter A[" << i << "]:\t";  //Ручной ввод
+                cin >> A[i];
+            }
+            for(int i = 0; i < M; i++){
+                cout << "Enter B[" << i << "]:\t";  //Ручной ввод
+                cin >> B[i];
+            }
+        }
+
+        for(int i = 0; i < N; i++){
+            cout << A[i] << ' ';    //Вывод нaчального массива
+        }
+
+        cout << endl;
+
+        for(int i = 0; i < M; i++){
+            cout << B[i] << ' ';    //Вывод нaчального массива
+        }
+
+        cout << endl;
+        
+        int *C = new int[N+M];
+        
+        C[0] = A[0];
+
+        int Ci(1);
+
+        for(int i = 1; i < N; i++){
+            bool in_C = false;
+
+            for(int j = 0; j < Ci; j++){
+                if(A[i] == C[j]){
+                    in_C = true;
+                }
+            }
+
+            if(!in_C){
+                C[Ci] = A[i];
+                Ci++;
+            }
+        }
+
+        for(int i = 0; i < M; i++){
+            bool in_C = false;
+
+            for(int j = 0; j < Ci; j++){
+                if(B[i] == C[j]){
+                    in_C = true;
+                }
+            }
+
+            if(!in_C){
+                C[Ci] = B[i];
+                Ci++;
+            }
+        }
+
+        for(int i = 0; i < Ci; i++) cout << C[i] << ' ';
+
+        cout << endl;
+    }
+    return 0;
+}

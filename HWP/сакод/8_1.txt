@@ -1,0 +1,35 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    vector <int> a;
+
+    for (int i = 0; i < n; i++) {
+        int num;
+        cin >> num;
+        a.push_back(num);
+    }
+
+    vector <int> s(n+1);
+    s[0] = 0;
+
+    for (int i = 0; i < n; i++) {
+        s[i+1] = s[i] + a[i];
+    }
+
+    int m;
+    cin >> m;
+
+    while (m--) {
+        int l, r;
+        cin >> l >> r;
+        cout << s[r+1] - s[l] << '\n';
+    }
+
+    return 0;
+}

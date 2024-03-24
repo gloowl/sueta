@@ -1,0 +1,63 @@
+/*
+Задание 1. Дана строка, содержащая последовательность слов, разделенных пробелами.
+Слова состоят из латинских строчных букв.
+*/
+
+/*
+11. Определить, имеются ли в последовательности неоднобуквенные слова,
+в которых хотя бы одна буква слова входит в него более одного раза.
+Если да, то вывести порядковые номера всех найденных слов.
+*/
+
+#include <iostream>
+#include <string>
+#include <sstream>
+
+using std::cin;
+using std::cout;
+using std::string;
+using std::stringstream;
+
+void nums_neodnobukvennih_slov(string s) {
+    stringstream ss(s);
+    string word;
+    int word_number = 0;
+    bool found = false;
+
+    while (ss >> word) {
+        word_number++;
+        bool has_multiple_letters = false;
+
+        for (int i = 0; i < word.length(); i++) {
+            int count = 0;
+
+            for (int j = i + 1; j < word.length(); j++) {
+                if (word[i] == word[j]) {
+                    count++;
+                }
+            }
+
+            if (count > 0) {
+                has_multiple_letters = true;
+                break;
+            }
+        }
+        if (has_multiple_letters) {
+            if (!found) {
+                cout << "Words with multiple letters: ";
+                found = true;
+            }
+
+            cout << word_number << " ";
+        }
+    }
+}
+
+int main() {
+    string str;
+    getline(cin, str);
+
+    nums_neodnobukvennih_slov(str);
+
+    return 0;
+}

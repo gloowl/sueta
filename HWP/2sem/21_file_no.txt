@@ -1,0 +1,53 @@
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+    setlocale(LC_ALL, "rus");
+
+    ifstream infile("input.txt");
+    ofstream outfile("output.txt");
+
+    if (!infile || !outfile) {
+        cout << "Файл не открылся :(" << endl;
+        return 0;
+    }
+
+    string line;
+    vector<string> words;
+    vector<string> lines_with_duplicates;
+
+    while (getline(infile, line)) {
+        istringstream iss(line);
+
+        words.clear();
+
+        for (string word; iss >> word;) {
+            words.push_back(word);
+        }
+
+        sort(words.begin(), words.end());
+
+        bool has_duplicates = false;
+        for (int i = 1; i < words.size(); i++) {
+            if (words[i] == words[i-1]) {
+                has_duplicates = true;
+                break;
+            }
+        }
+
+        if (has_duplicates) {
+            lines_with_duplicates.push_back(line);
+        }
+    }
+
+    for (const auto& line : lines_with_duplicates) {
+        outfile << line << endl;
+    }
+
+    return 0;
+} 

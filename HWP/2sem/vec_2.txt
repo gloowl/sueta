@@ -1,0 +1,96 @@
+#include <iostream> 
+#include <vector> 
+#include <algorithm>
+#include <time.h> 
+ 
+using namespace std; 
+
+void vector_input(vector <int>& v, int size) {
+    bool input_code;
+
+    cout << "Enter an input code (0 - manual inp., 1 - rand. inp.):\t";
+    cin >> input_code;
+
+    vector <int> ::iterator itr_out = v.begin();
+
+    cout << "Введите последовательность:\t";
+
+    if (input_code) {
+        srand(time(NULL));
+        while (size--) {
+            v.push_back(rand() % 11); 
+        }
+    } else {
+        int i;
+        while (size--) { 
+            cin >> i; 
+            v.push_back(i); 
+        }
+    }
+
+    cout << '\n';
+}
+ 
+void vector_output(vector <int>& v) { 
+    vector <int> ::iterator itr_out = v.begin(); 
+    while (itr_out != v.end()) { 
+        cout << *itr_out << " "; 
+        itr_out++; 
+    }
+
+    cout << '\n';
+}
+
+void changeMinMax(vector <int>& v) {
+    int mn = *min_element(v.begin(), v.end()); 
+    int mx = *max_element(v.begin(), v.end());
+
+    vector <int> ::iterator itr_out = v.begin(); 
+    while (itr_out != v.end()) {
+        if (*itr_out == mn || *itr_out == mx) {
+            if (*itr_out == mn) {
+                *itr_out = mx;
+                itr_out++;
+            }
+
+            if (*itr_out == mx) {
+                *itr_out = mn;
+                *itr_out++;
+            }
+        }
+        else itr_out++;
+    }
+}
+ 
+int main() 
+{ 
+    setlocale(LC_ALL, "rus");
+
+    vector <int> v; 
+ 
+    int N; 
+
+    cout << "Введите размер последовательности:\t";
+    cin >> N;
+
+    vector_input(v, N);
+
+    cout << "Последовательность:\t\t";
+    vector_output(v);
+
+    changeMinMax(v);
+ 
+    cout << "Измененная последовательность:\t";
+    vector_output(v);
+ 
+    return 0; 
+}
+
+/*
+
+При решении задач использовать контейнер vector и обобщенные алгоритмы библиотеки STL.
+Раздел 1 (задачи 1-16). Дана последовательность из N  целых чисел.
+
+2. Найти наибольшее и наименьшее значение в последовательности.
+Заменить все числа с наибольшим значением на наименьшее, и наоборот.
+*/

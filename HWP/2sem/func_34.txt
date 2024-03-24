@@ -1,0 +1,110 @@
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+
+using namespace std;
+
+int countDigits(int number) {
+    int count = 0;
+
+    while (number) {
+        count++;
+        number /= 10;
+    }
+
+    return count;
+}
+
+void check_NofD_in_matrix(int **matrix, int num_of_rows, int num_of_colums, int NofD) {
+    for (int i = 0; i < num_of_rows; i++) {
+        int count = 0;
+
+        for (int j = 0; j < num_of_colums; j++) {
+            if (countDigits(matrix[i][j]) == NofD) {
+                cout << matrix[i][j] << "\t";
+                count++;
+            }
+            else cout << "\t";
+        }
+
+        cout << count << '\n' << endl;
+    }
+}
+
+void matrix_input(int **matrix, int num_of_rows, int num_of_colums) {
+    bool input_code;
+
+    cout << "Enter an input code (0 - manual inp., 1 - rand. inp.):\t";
+    cin >> input_code;
+
+    if (input_code) {
+        srand(time(NULL));
+
+        for (int i = 0; i < num_of_rows; i++) {
+            for (int j = 0; j < num_of_colums; j++) {
+                matrix[i][j] = rand() % 1000000;
+            }
+        }
+    }
+    else {
+        for (int i = 0; i < num_of_rows; i++) {
+            for (int j = 0; j < num_of_colums; j++) {
+                cout << "Matrix[" << i << "][" << j << "] = ";
+                cin >> matrix[i][j];
+            }
+        }
+    }
+
+    cout << endl;
+}
+
+void matrix_output(int **matrix, int num_of_rows, int num_of_colums) {
+    for (int i = 0; i < num_of_rows; i++) {
+        for (int j = 0; j < num_of_colums; j++) {
+            cout << matrix[i][j] << "\t";
+        }
+        cout << endl;
+    }
+
+    cout << endl;
+}
+
+void matrix_delete(int **matrix, int num_of_rows) {
+    for (int i = 0; i < num_of_rows; i++) {
+        delete[] matrix[i];
+    }
+    delete[] matrix;
+}
+
+int main() {
+    for (;;) {
+        int K, L;
+
+        cout << "Enter K:\t";
+        cin >> K;
+
+        cout << "Enter L:\t";
+        cin >> L;
+
+        int **X = new int* [K];
+
+        for (int i = 0; i < K; i++) {
+            X[i] = new int [L];
+        }
+
+        matrix_input(X, K, L);
+
+        matrix_output(X, K, L);
+
+        cout << "Enter the number of digits:\t";
+
+        int n;
+        cin >> n;
+
+        check_NofD_in_matrix(X, K, L, n);
+
+        matrix_delete(X, K);
+    }
+
+    return 0;
+}

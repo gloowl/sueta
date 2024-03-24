@@ -1,0 +1,50 @@
+#include <iostream>
+#include <list>
+#include <time.h>
+
+using namespace std;
+
+void lout(list <int>& v) { 
+    for (int num : v) {
+        cout << num << ' ';
+    }
+
+    cout << '\n';
+}
+
+int main() {
+    long n, m;
+    cin >> n >> m;
+
+    list <int> v;
+
+    srand(time(NULL));
+    while (n--) {
+        v.push_back(rand()%201-100);
+    }
+
+    lout(v);
+    int kod[3];
+    auto it = v.begin();
+    int h = 1;
+
+    while (m--) {
+        cout << "Enter code:\t";
+        cin >> editType >> posIn;
+        advance(it, posIn-h);
+
+        if (editType) {
+            cin >> posOut;
+            v.insert(it, posOut);
+            it--;
+        }
+        else
+            it = v.erase(it);
+            
+        h = posIn;
+
+        lout(v);
+    }
+    
+    return 0;
+}  

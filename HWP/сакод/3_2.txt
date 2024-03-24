@@ -1,0 +1,44 @@
+#include <iostream>
+#include <vector>
+#include <map>
+
+using namespace std;
+
+int main() {
+	int N;
+	cin >> N;
+
+	string s1, s2, s;
+	map <string, string> M;
+	for (int i = 0; i < N; i++) {
+		cin >> s1 >> s2;
+		M.emplace(s1, s2 );
+	}
+
+	vector <string> v;
+	while (cin >> s) {
+		auto it = M.find(s);
+		if (it == M.end()) {
+			v.push_back(s);
+		}
+		else {
+			v.push_back((*it).second);
+		}
+	}
+
+	for (auto x : v) {
+		cout << x << " ";
+	}
+	return 0;
+}
+
+/*
+4
+Ivanov Kozlov
+Sminov Popov
+Kozlov Novikov
+Petrov Kuznetsov
+
+Kozlov doing. Petrov working. Sminov think. Ivanov riding. Sminov codding. Ivanov and Petrov chill.
+
+*/

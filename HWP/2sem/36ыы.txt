@@ -1,0 +1,84 @@
+#include <iostream>
+#include <deque>
+#include <queue>
+
+using namespace std;
+
+bool isLand(deque<deque<int>>& map, int i, int j) {
+    if (i < 0 || j < 0 || i >= map.size() || j >= map[0].size())
+        return false;
+
+    return (map[i][j] == 1);
+}
+
+void countIslands(deque<deque<int>>& map, int i, int j) {
+    if (map[i][j] != 1)
+        return;
+
+    map[i][j] = 0;
+
+    queue<pair<int, int>> q;
+    q.push(make_pair(i, j));
+
+    while (!q.empty()) {
+        auto curr = q.front();
+        q.pop();
+
+        int x = curr.first;
+        int y = curr.second;
+
+        // Обходим соседние клетки
+        if (isLand(map, x-1, y)) { // Сверху
+            q.push(make_pair(x-1, y));
+            map[x-1][y] = 0; // Отмечаем клетку как посещенную
+        }
+        if (isLand(map, x+1, y)) { // Снизу
+            q.push(make_pair(x+1, y));
+            map[x+1][y] = 0; // Отмечаем клетку как посещенную
+        }
+        if (isLand(map, x, y-1)) { // Слева
+            q.push(make_pair(x, y-1));
+            map[x][y-1] = 0; // Отмечаем клетку как посещенную
+        }
+        if (isLand(map, x, y+1)) { // Справа
+            q.push(make_pair(x, y+1));
+            map[x][y+1] = 0; // Отмечаем клетку как посещенную
+        }
+    }
+}
+
+/*
+4 3
+1 0 0
+1 1 0
+0 1 1
+0 1 0
+*/
+int main() {
+    int n, m;
+
+    cout << "Enter matrix size:\n";
+    cin >> n >> m;
+
+    deque<deque<int>> map(n, deque<int>(m));
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            cin >> map[i][j];
+        }
+    }
+
+    int count = 0;
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (map[i][j] == 1) {
+                count++;
+                countIslands(map, i, j);
+            }
+        }
+    }
+
+    cout << count << endl;
+
+    return 0;
+}

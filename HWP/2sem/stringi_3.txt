@@ -1,0 +1,55 @@
+/*
+Задание 1. Дана строка, содержащая последовательность слов, разделенных пробелами. 
+Слова состоят из латинских строчных букв.
+
+3. Напечатать все слова с длиной, меньше средней длины слов в последовательности.
+*/
+#include <iostream>
+#include <string>
+#include <sstream>
+
+using namespace std;
+
+int wordCount(string str, int str_end) {
+    int wordCount = 0;
+
+    for (int i = 0; i < str_end; i++) {
+        if (str[i] != ' ') {
+            if (i == 0 || str[i-1] == ' ') {
+                wordCount++;
+            }
+        }
+    }
+
+    return wordCount;
+}
+
+float srCnt(string str, int str_end) {
+    int sum = 0;
+
+    for (int i = 0; i < str_end; i ++) {
+        if (str[i] != ' ') {
+            sum++;
+        }
+    }
+
+    return (float)sum/wordCount(str, str_end);
+}
+
+int main() {
+    for (;;) {
+        string s;
+        getline(cin, s);
+        int str_end = s.size();
+
+        float sred = srCnt(s, str_end);
+
+        stringstream inp; 
+        inp << s; 
+        while (inp >> s) { 
+            if (s.size() < sred) cout << s << " "; 
+        } 
+    }
+
+    return 0;
+}

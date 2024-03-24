@@ -1,0 +1,60 @@
+/*
+Задание 3. Дана строка, содержащая последовательность слов, разделенных пробелами. 
+Слова состоят из латинских строчных букв.
+
+59.  Удалить из последовательности все повторные вхождения слов.
+*/
+
+#include <iostream>
+#include <string>
+#include <sstream>
+
+using std::cin;
+using std::cout;
+using std::string;
+using std::istringstream;
+
+int words_count(string s) {
+    int c = 0;
+    for (int i = 1; i < s.length(); i++) {
+        if (s[i] == ' ' && s[i-1] != ' ') c++;
+    }
+
+    return c;
+}
+
+int main() {
+    string input;
+    getline(cin, input);
+    input += ' ';
+
+    istringstream iss(input);
+
+    string* words = new string[words_count(input)];
+    int n = 0;
+
+    string word;
+    while (iss >> word) {
+        words[n++] = word;
+    }
+    
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n;) {
+            if (words[i] == words[j]) {
+                for (int k = j; k < n - 1; k++) {
+                    words[k] = words[k + 1];
+                }
+                n--;
+            }
+            else j++;
+        }
+    }
+
+    for (int i = 0; i < n; i++) {
+        cout << words[i] << " ";
+    }
+
+    delete[] words; // освобождаем память
+
+    return 0;
+}
