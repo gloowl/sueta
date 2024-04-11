@@ -1,0 +1,54 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void dfs(int v, vector<vector<int>>& adj_list, vector<bool>& visited) {
+    visited[v] = true;
+    for (int u : adj_list[v]) {
+        if (!visited[u]) {
+            dfs(u, adj_list, visited);
+        }
+    }
+}
+
+int countConnectedComponents(vector<vector<int>>& adj_matrix) {
+    int n = adj_matrix.size();
+    vector<vector<int>> adj_list(n);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (adj_matrix[i][j] == 1) {
+                adj_list[i].push_back(j);
+                adj_list[j].push_back(i);
+            }
+        }
+    }
+
+    vector<bool> visited(n, false);
+    int count = 0;
+    for (int i = 0; i < n; i++) {
+        if (!visited[i]) {
+            dfs(i, adj_list, visited);
+            count++;
+        }
+    }
+
+    return count;
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    vector<vector<int>> adj_matrix(n, vector<int>(n));
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            cin >> adj_matrix[i][j];
+        }
+    }
+
+    int num_connected_components = countConnectedComponents(adj_matrix);
+    cout << "Number of connected components: " << num_connected_components << endl;
+
+    return 0;
+}
