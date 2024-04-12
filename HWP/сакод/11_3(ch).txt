@@ -1,0 +1,55 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+vector<int> entryTime;
+vector<int> exitTime;
+
+void dfs(int v, int &time, vector<vector<int>> &g)
+{
+    entryTime[v] = time++;
+
+    for (auto u : g[v])
+        if (u == 1 && entryTime[u] == -1)
+            dfs(u, time, g);
+
+    exitTime[v] = time++;
+}
+
+int main()
+{
+    int n;
+    cin >> n;
+
+    vector<vector<int>> g(n, vector<int>(n));
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            cin >> g[i][j];
+
+    vector<vector<int>> adj_list(n);
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            if (g[i][j] == 1)
+            {
+                adj_list[i].push_back(j);
+                adj_list[j].push_back(i);
+            }
+        }
+    }
+
+    entryTime.resize(n, -1);
+    exitTime.resize(n, -1);
+
+    int time = 0;
+    for (int v = 0; v < n; v++)
+        if (entryTime[v] == -1)
+            dfs(v, time, adj_list);
+
+    for (int v = 0; v < n; v++)
+        cout << v << " | " << entryTime[v] << " | " << exitTime[v] << endl;
+
+    return 0;
+}
