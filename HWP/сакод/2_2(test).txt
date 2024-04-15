@@ -12,7 +12,7 @@ int main() {
     vector<pair<int, int>> people(N);
 
     // Считываем информацию о каждом человеке.
-    for (int i = 0; i < N; ++i) {
+    for (int i = 0; i < N; i++) {
         cin >> people[i].first >> people[i].second;
     }
 
@@ -20,7 +20,7 @@ int main() {
     queue<int> exit_times;
 
     int current_time = 0; // Текущее время
-    for (int i = 0; i < N; ++i) {
+    for (int i = 0; i < N; i++) {
         int T1 = people[i].first;
         int processing_time = people[i].second;
 
@@ -78,7 +78,7 @@ int main() {
 
     vector<Person> people(N);
 
-    for (int i = 0; i < N; ++i) {
+    for (int i = 0; i < N; i++) {
         cin >> people[i].T1 >> people[i].T2;
         people[i].index = i;
     }
@@ -88,13 +88,13 @@ int main() {
     vector<int> exit_times(N);
     int current_time = 0;
 
-    for (int i = 0; i < N; ++i) {
+    for (int i = 0; i < N; i++) {
         current_time = max(current_time, people[i].T1);
         exit_times[people[i].index] = current_time + people[i].T2;
         current_time += people[i].T2;
     }
 
-    for (int i = 0; i < N; ++i) {
+    for (int i = 0; i < N; i++) {
         cout << exit_times[i] << endl;
     }
 
@@ -121,7 +121,7 @@ int main() {
     int N;
     cin >> N;
     queue<Person> q;
-    for (int i = 0; i < N; ++i) {
+    for (int i = 0; i < N; i++) {
         int T1, T2;
         cin >> T1 >> T2;
         q.push({T1, T2});

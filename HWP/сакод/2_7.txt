@@ -7,7 +7,7 @@ public:
         my_queue.push(x);
 
         int size = my_queue.size();
-        for (int i = 0; i < size - 1; ++i) {
+        for (int i = 0; i < size - 1; i++) {
             my_queue.push(my_queue.front());
             my_queue.pop();
         }
