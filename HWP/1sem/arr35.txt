@@ -9,10 +9,10 @@ int main() {
 
         int N, code;
         
-        cout << "Enter code (0 or 1): " << endl;
+        cout << "Enter code (0 or 1): " << '\n';
         cin >> code;
 
-        cout << "Enter N: " << endl;
+        cout << "Enter N: " << '\n';
         cin >> N;
 
         int *A = new int[N];
@@ -34,7 +34,7 @@ int main() {
             cout << A[i] << ' ';    //Вывод нaчального массива
         }
 
-        cout << endl;
+        cout << '\n';
         
         int count = 1, iMax = 0, maxCount = 1;
 
@@ -56,7 +56,7 @@ int main() {
                 cout << A[i] << ' ';
         } else cout << "NO";
 
-        cout << '\n' << endl;
+        cout << '\n' << '\n';
     }
     return 0;
 }

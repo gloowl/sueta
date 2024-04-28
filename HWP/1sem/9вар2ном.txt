@@ -17,7 +17,7 @@ int main() {
             k += 1;
             slag *= (-2*x)/k;
         }
-        cout << '\n' << "Output: " << sum << '\n' << endl;
+        cout << '\n' << "Output: " << sum << '\n' << '\n';
     } while(true);
     return 0;
 }

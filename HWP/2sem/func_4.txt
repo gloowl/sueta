@@ -23,11 +23,11 @@ int main() {
         cin >> N;
 
         
-        cout << '\n' << endl;
+        cout << '\n' << '\n';
 
         for (int i = N+2; i <= 2*N; i++) {
             if (checkIsPrime(i) == 1 && checkIsPrime(i-2) == 1) {
-                cout << i-2 << " and " << i << endl;
+                cout << i-2 << " and " << i << '\n';
             }
         }
     }

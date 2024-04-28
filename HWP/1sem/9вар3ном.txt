@@ -4,7 +4,7 @@ using namespace std;
 int main() {
     do {
         double x;
-        cout << "Input X: " << endl;
+        cout << "Input X: " << '\n';
         cin >> x;
         double y = x;
         int fact(1), f1(1);
@@ -14,13 +14,13 @@ int main() {
                 y = fact * f1 / (pow(3, f2) - y); 
             }
             else {
-                cout << "NO" << endl; // Вычисление не возможно
+                cout << "NO" << '\n'; // Вычисление не возможно
                 return 0;             // Программа завершается
             }
             f1 += 2;
-            cout << "y = " << y << endl;
+            cout << "y = " << y << '\n';
         }
-        cout << "\nOutput: y = " << y << '\n' << endl;
+        cout << "\nOutput: y = " << y << '\n' << '\n';
     } while (true);
     return 0;
 }

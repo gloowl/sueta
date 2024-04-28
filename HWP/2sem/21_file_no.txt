@@ -13,7 +13,7 @@ int main() {
     ofstream outfile("output.txt");
 
     if (!infile || !outfile) {
-        cout << "Файл не открылся :(" << endl;
+        cout << "Файл не открылся :(" << '\n';
         return 0;
     }
 
@@ -46,7 +46,7 @@ int main() {
     }
 
     for (const auto& line : lines_with_duplicates) {
-        outfile << line << endl;
+        outfile << line << '\n';
     }
 
     return 0;

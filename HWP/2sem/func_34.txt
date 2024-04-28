@@ -27,7 +27,7 @@ void check_NofD_in_matrix(int **matrix, int num_of_rows, int num_of_colums, int 
             else cout << "\t";
         }
 
-        cout << count << '\n' << endl;
+        cout << count << '\n' << '\n';
     }
 }
 
@@ -55,7 +55,7 @@ void matrix_input(int **matrix, int num_of_rows, int num_of_colums) {
         }
     }
 
-    cout << endl;
+    cout << '\n';
 }
 
 void matrix_output(int **matrix, int num_of_rows, int num_of_colums) {
@@ -63,10 +63,10 @@ void matrix_output(int **matrix, int num_of_rows, int num_of_colums) {
         for (int j = 0; j < num_of_colums; j++) {
             cout << matrix[i][j] << "\t";
         }
-        cout << endl;
+        cout << '\n';
     }
 
-    cout << endl;
+    cout << '\n';
 }
 
 void matrix_delete(int **matrix, int num_of_rows) {

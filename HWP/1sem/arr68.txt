@@ -9,13 +9,13 @@ int main(){
 
         int N, M, code;
         
-        cout << "Enter code (0 or 1): " << endl;
+        cout << "Enter code (0 or 1): " << '\n';
         cin >> code;
 
-        cout << "Enter N: " << endl;
+        cout << "Enter N: " << '\n';
         cin >> N;
 
-        cout << "Enter M: " << endl;
+        cout << "Enter M: " << '\n';
         cin >> M;
 
         int *A = new int[N];
@@ -45,13 +45,13 @@ int main(){
             cout << A[i] << ' ';    //Вывод нaчального массива
         }
 
-        cout << endl;
+        cout << '\n';
 
         for(int i = 0; i < M; i++){
             cout << B[i] << ' ';    //Вывод нaчального массива
         }
 
-        cout << endl;
+        cout << '\n';
         
         int *C = new int[N+M];
         
@@ -91,7 +91,7 @@ int main(){
 
         for(int i = 0; i < Ci; i++) cout << C[i] << ' ';
 
-        cout << endl;
+        cout << '\n';
     }
     return 0;
 }

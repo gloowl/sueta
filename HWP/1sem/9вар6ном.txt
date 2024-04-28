@@ -4,7 +4,7 @@ int main() {
     do {
         //setlocale (LC_ALL, "Russian");
         int n, mn;
-        cout << "Enter posl-t' chisel > 0 (0 - end): " << endl;
+        cout << "Enter posl-t' chisel > 0 (0 - end): " << '\n';
         do {
             cin >> mn;
         } while (mn < 0);
@@ -12,7 +12,7 @@ int main() {
             cin >> n;
             if ((n > 0) && (n < mn)) mn = n;
         }
-        cout << "\nMin chislo > 0 iz posl-ti = " << mn << '\n' << endl;
+        cout << "\nMin chislo > 0 iz posl-ti = " << mn << '\n' << '\n';
     } while (true);
     return 0;
 }

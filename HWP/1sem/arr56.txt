@@ -6,9 +6,9 @@ using namespace std;
 int main(){
     do{
         int N, code;
-        cout << "Enter code (0 or 1): " << endl;
+        cout << "Enter code (0 or 1): " << '\n';
         cin >> code;
-        cout << "Enter N: " << endl;
+        cout << "Enter N: " << '\n';
         cin >> N;
         int *X = new int[N];
         if(code){
@@ -26,7 +26,7 @@ int main(){
         for(int i = 0; i < N; i++){
             cout << X[i] << ' ';    //Вывод нaчального массива
         }
-        cout << endl;
+        cout << '\n';
         for(int i=0; i<N; i++){
             if(abs(X[i]) > 10) {
                 int first(0), n=abs(X[i]);
@@ -46,7 +46,7 @@ int main(){
         for(int i=0; i<N; i++){
             cout << X[i] << ' ';
         }
-        cout << '\n' << endl;
+        cout << '\n' << '\n';
     }while(true);
     return 0;
 }

@@ -5,7 +5,7 @@ using namespace std;
 int main() {
     float x, y, r(0), X12, Y12, X6, Y6, S;
     do {
-        cout << "Vvedite koordinati tochki:" << endl;
+        cout << "Vvedite koordinati tochki:" << '\n';
         cin >> x >> y;
         S = x*x + y*y;
         X12 = 12 - fabs(x);
@@ -50,7 +50,7 @@ int main() {
                 }
             }
         }
-        cout << "Rastoyanie do blizhayshey granitsi figuri: " << r << endl;
+        cout << "Rastoyanie do blizhayshey granitsi figuri: " << r << '\n';
     } while(true);
     return 0;
 }

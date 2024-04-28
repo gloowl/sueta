@@ -34,7 +34,7 @@ int main() {
     }
 
     for (auto i : count) {
-        cout << i.first << " " << i.second << endl;
+        cout << i.first << " " << i.second << '\n';
     }
 
     return 0;

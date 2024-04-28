@@ -39,7 +39,7 @@ int main() {
 
     // Выводим время выхода каждого человека из кабинета специалиста.
     while (!exit_times.empty()) {
-        cout << exit_times.front() << endl;
+        cout << exit_times.front() << '\n';
         exit_times.pop();
     }
 
@@ -95,7 +95,7 @@ int main() {
     }
 
     for (int i = 0; i < N; i++) {
-        cout << exit_times[i] << endl;
+        cout << exit_times[i] << '\n';
     }
 
     return 0;
@@ -134,7 +134,7 @@ int main() {
             current_time = p.T1;
         }
         int exit_time = current_time + p.T2;
-        cout << exit_time << endl;
+        cout << exit_time << '\n';
         current_time = exit_time;
     }
     return 0;

@@ -25,7 +25,7 @@ int main()
     long long  a, n; 
     cin >> a >> n; 
 
-    cout << binPow(a, n) << endl; 
+    cout << binPow(a, n) << '\n'; 
 
     return 0; 
 } 

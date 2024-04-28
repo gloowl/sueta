@@ -4,13 +4,13 @@ using namespace std;
 int main() {
     do {
         int m, k(0), help(4);
-        cout << "Input N: " << endl;
+        cout << "Input N: " << '\n';
         cin >> m;
         while (help < m) {
             help = pow(4, k);
             k++;
         }
-        cout << help/4 << endl;
+        cout << help/4 << '\n';
     } while (true);
     return 0;
 }

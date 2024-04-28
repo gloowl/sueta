@@ -4,15 +4,15 @@ using namespace std;
 int main() {
     do {
         int N,/* k(0),*/ help(3);
-        cout << "Input N: " << endl;
+        cout << "Input N: " << '\n';
         cin >> N;
         while (help <= N) {
             help *= 3;
             //help = pow(3, k);
             //k++;
         }
-        if (help/3 == N) cout << "YES" << endl;
-        else cout << "NO" << endl;
+        if (help/3 == N) cout << "YES" << '\n';
+        else cout << "NO" << '\n';
     } while (true);
     return 0;
 }

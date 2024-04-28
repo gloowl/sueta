@@ -21,7 +21,7 @@ int main() {
     cin >> n >> stamina; 
  
     if(n > stamina) { 
-        cout << "No" << endl; 
+        cout << "No" << '\n'; 
         return 0; 
     } 
  
@@ -38,7 +38,7 @@ int main() {
     while(r - l > 1) { 
         int mid = (l + r) / 2; 
         if (stamina == countHit(health__monsters, mid)) { 
-            cout << mid << endl; 
+            cout << mid << '\n'; 
             return 0; 
         } 
         if (stamina - countHit(health__monsters, mid) < 0) { 
@@ -49,11 +49,11 @@ int main() {
         } 
     } 
     if (stamina - countHit(health__monsters, l) > 0) { 
-        cout << l << endl; 
+        cout << l << '\n'; 
         return 0; 
     } 
     else { 
-        cout << r << endl; 
+        cout << r << '\n'; 
         return 0; 
     } 
  

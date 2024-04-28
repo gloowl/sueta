@@ -48,7 +48,7 @@ int main() {
     }
 
     int num_connected_components = countConnectedComponents(g);
-    cout << "Number of connected components: " << num_connected_components << endl;
+    cout << "Number of connected components: " << num_connected_components << '\n';
 
     return 0;
 }

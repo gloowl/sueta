@@ -38,7 +38,7 @@ int main() {
     str.insert(start + length, "[" + to_string(length) + "]");
 
     // вывод измененной строки
-    cout << "Измененная строка: " << str << endl;
+    cout << "Измененная строка: " << str << '\n';
 
     return 0;
 }

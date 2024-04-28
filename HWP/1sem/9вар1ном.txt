@@ -23,7 +23,7 @@ int main() {
             }
             n /= 16;
         } while (n);
-        cout << '\n' << endl;
+        cout << '\n' << '\n';
     } while (true);
     return 0;
 }

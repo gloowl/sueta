@@ -6,7 +6,7 @@ int main() {
     do {
         setlocale(LC_ALL, "");
         float a, b, c, r(0), ugol;
-        cout << "Vvedite 3 chisla - dlini storon ravnobedrennogo tupougol'nogo trugol'nika:" << endl;
+        cout << "Vvedite 3 chisla - dlini storon ravnobedrennogo tupougol'nogo trugol'nika:" << '\n';
         cin >> a >> b >> c;
         if (((a+b)<=c) || ((b+c)<=a) || ((a+c)<=b)) cout << "Ttreugol'nik ne sushchestvuet\n";
         else {

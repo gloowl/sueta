@@ -6,9 +6,9 @@ using namespace std;
 int main(){
     do{
         int N, code;
-        cout << "Enter code (0 or 1): " << endl;
+        cout << "Enter code (0 or 1): " << '\n';
         cin >> code;
-        cout << "Enter N: " << endl;
+        cout << "Enter N: " << '\n';
         cin >> N;
         int *X = new int[N];
         int *Y = new int[N];
@@ -38,15 +38,15 @@ int main(){
         for(int i = 0; i < N; i++){
             cout << X[i] << ' ';    //Вывод нaчального массива
         }
-        cout << endl;
+        cout << '\n';
         for(int i = 0; i < N; i++){
             cout << Y[i] << ' ';    //Вывод нaчального массива
         }
-        cout << endl;
+        cout << '\n';
         for(int i = 0; i < N; i++){
             cout << Z[i] << ' ';    //Вывод нaчального массива
         }
-        cout << endl;
+        cout << '\n';
         int help(0), mx_num(0), mx = sqrt(pow(X[0], 2) + pow(Y[0], 2) + pow(Z[0], 2));
         for(int i=1; i<N; i++){
             help = sqrt(pow(X[i], 2) + pow(Y[i], 2) + pow(Z[i], 2));
@@ -55,8 +55,8 @@ int main(){
                 mx_num = i;
             }
         }
-        cout << "Output: " << mx_num << endl;
-        cout << '\n' << endl;
+        cout << "Output: " << mx_num << '\n';
+        cout << '\n' << '\n';
     }while(true);
     return 0;
 }

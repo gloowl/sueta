@@ -18,9 +18,9 @@ int main() {
             if ((S >= 25) && (S <= 225)) help++;
         }
         if (help)
-            cout << "YES" << endl;
+            cout << "YES" << '\n';
         else
-            cout << "NO" << endl;
+            cout << "NO" << '\n';
     } while (true);
     return 0;
 }

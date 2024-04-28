@@ -31,8 +31,8 @@ void mchw(string s) {
       }
    }
 
-   cout << "Most frequent letter is: " << max_char << endl;
-   cout << "Words containing this letter:" << endl;
+   cout << "Most frequent letter is: " << max_char << '\n';
+   cout << "Words containing this letter:" << '\n';
 
    stringstream out;
    out << s;

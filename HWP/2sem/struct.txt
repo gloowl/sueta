@@ -48,14 +48,14 @@ int main() {
     } else {
         cout << "Найдены подходящие игрушки:\n";
         for (int i=0; i < result.size(); i+=2) {
-            cout << "\t- " << result[i] << " | " << result[i+1] << endl;
+            cout << "\t- " << result[i] << " | " << result[i+1] << '\n';
         }
     }
 
     cout << "Список всех игрушек:\n";
     cout << setw(12) << "Название" << " Стоимость" <<  " Мин. возраст" << " Макс. возраст\n";
     for (Toy t : toys) {
-        cout << setw(12) << t.name << setw(10) << t.price << setw(8) << t.minAge << setw(9) << t.maxAge << endl;
+        cout << setw(12) << t.name << setw(10) << t.price << setw(8) << t.minAge << setw(9) << t.maxAge << '\n';
     }
 
     return 0;

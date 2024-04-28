@@ -37,8 +37,8 @@ int main() {
                 else r = 0; // Точка в фигуре
             }
         }
-        if (r) cout << '\n' << r << endl;
-        else cout << "\nNO" << endl;
+        if (r) cout << '\n' << r << '\n';
+        else cout << "\nNO" << '\n';
     } while (true);
     return 0;
 }

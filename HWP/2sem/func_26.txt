@@ -73,7 +73,7 @@ void commonElements(int *arr1, int arrSize1, int *arr2, int arrSize2)
 
 void arrayIn(int *arr, int arrSize, char arrName)
 {
-    cout << "Array " << arrName << '[' << arrSize << "]:" << endl;
+    cout << "Array " << arrName << '[' << arrSize << "]:" << '\n';
 
     int inputCode;
 
@@ -112,10 +112,10 @@ int main()
     {
         int N, M;
 
-        cout << "Enter N: " << endl;
+        cout << "Enter N: " << '\n';
         cin >> N;
 
-        cout << "Enter M: " << endl;
+        cout << "Enter M: " << '\n';
         cin >> M;
 
         int *X = new int[N];
