@@ -4,7 +4,9 @@
 
 using namespace std;
 
-void bfs(vector<vector<int>> &g, int start, vector<int> &distances)
+vector<int> distances;
+
+void bfs(vector<vector<int>> &g, int start)
 {
     queue<int> q;
     vector<bool> visited(g.size(), false);
@@ -30,13 +32,11 @@ void bfs(vector<vector<int>> &g, int start, vector<int> &distances)
     }
 }
 
-int main()
+void graph_input(vector<vector<int>> &g)
 {
-    int N;
-    cin >> N;
+    int n = g.size();
 
-    vector<vector<int>> g(N);
-    for (int i = 0; i < N; i++)
+    for (int i = 0; i < n; i++)
     {
         int num_neighbors;
         cin >> num_neighbors;
@@ -47,14 +47,24 @@ int main()
             g[i].push_back(neighbor);
         }
     }
+}
+
+int main()
+{
+    int n;
+    cin >> n;
+
+    distances.resize(n, -1);
+
+    vector<vector<int>> g(n);
+    graph_input(g);
 
     int s;
     cin >> s;
 
-    vector<int> distances(N, -1);
-    bfs(g, s, distances);
+    bfs(g, s);
 
-    for (int i = 0; i < N; i++)
+    for (int i = 0; i < n; i++)
     {
         if (i != s)
             cout << i << ": " << distances[i] << '\n';
