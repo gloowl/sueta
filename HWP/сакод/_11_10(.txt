@@ -1,0 +1,152 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <windows.h>
+#include <iomanip>
+
+using namespace std;
+
+vector<vector<int>> dist;
+
+pair<int, int> s;
+pair<int, int> f;
+
+vector<int> dx{0, 0, 1, -1};
+vector<int> dy{1, -1, 0, 0};
+
+bool is_passable_corridor(vector<vector<char>> &g, int i, int j)
+{
+	if (i >= 0 && j >= 0 && i < g.size() && j < g[i].size())
+		if (g[i][j] != '#' && dist[i][j] == -1)
+			return true;
+
+	return false;
+}
+
+void labirint_input(vector<vector<char>> &g, int n, int m)
+{
+	char c;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			cin >> c;
+
+			if (c == 'S')
+				s = {i, j};
+			if (c == 'F')
+				f = {i, j};
+
+			g[i].push_back(c);
+		}
+	}
+}
+
+void bfs(vector<vector<char>> &g, int i, int j)
+{
+	queue<pair<int, int>> q;
+	q.push({i, j});
+
+	dist[i][j] = 0;
+
+	int check = 0;
+	while (!q.empty())
+	{
+		auto curr_point = q.front();					//Капец Я тупой кнш :(
+		int curr_x = curr_point.first;
+		int curr_y = curr_point.second;
+
+		q.pop();
+
+		int x, y;
+		for (int k = 0; k < 4; k++)
+		{
+			x = curr_x + dx[k];
+			y = curr_y + dy[k];
+
+			if (is_passable_corridor(g, x, y))
+			{
+				q.push({x, y});
+				dist[x][y] = dist[curr_x][curr_y] + 1;
+			}
+		}
+
+		Sleep(100);
+		cout << "\033[3;35m" << ++check << ": check\n\033[0m";
+	}
+}
+
+int main()
+{
+	int n, m;
+	cin >> n >> m;
+
+	dist.resize(n, vector<int>(m, -1));
+
+	vector<vector<char>> g(n);
+
+	labirint_input(g, n, m);
+
+	bfs(g, s.first, s.second);
+
+	cout << "\n\033[33m" << "MATRIX dist:\n";
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++) {
+			Sleep(100);
+			cout << setw(4) << dist[i][j];
+		}
+
+		cout << '\n';
+	}
+	cout << "\033[0m\n";
+
+	Sleep(1000);
+	cout << "\033[32m" << dist[f.first][f.second] << "\033[0m";
+
+	return 0;
+}
+
+/*
+
+2 4
+S . . F
+# # # #
+
+*/
+
+/*
+
+6 6
+S#....
+.#.##.
+.#.#..
+.#.#.#
+.#.#..
+.....F
+
+*/
+
+/*
+
+6 2
+S.
+..
+..
+..
+..
+.F
+
+*/
+
+/*
+
+6 2
+S.
+#.
+..
+.#
+..
+#F
+
+*/
