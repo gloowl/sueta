@@ -49,10 +49,10 @@ void bfs(vector<vector<char>> &g, int i, int j)
 
 	dist[i][j] = 0;
 
-	int check = 0;
+	// int check = 0;
 	while (!q.empty())
 	{
-		auto curr_point = q.front();					//Капец Я тупой кнш :(
+		auto curr_point = q.front();
 		int curr_x = curr_point.first;
 		int curr_y = curr_point.second;
 
@@ -71,8 +71,8 @@ void bfs(vector<vector<char>> &g, int i, int j)
 			}
 		}
 
-		Sleep(100);
-		cout << "\033[3;35m" << ++check << ": check\n\033[0m";
+		// Sleep(100);
+		// cout << "\033[3;35m" << ++check << ": check\n\033[0m";
 	}
 }
 
@@ -92,10 +92,12 @@ int main()
 	cout << "\n\033[33m" << "MATRIX dist:\n";
 	for (int i = 0; i < n; i++)
 	{
-		for (int j = 0; j < m; j++) {
-			Sleep(100);
+		for (int j = 0; j < m; j++)
+		{
+			Sleep(128);
 			cout << setw(4) << dist[i][j];
 		}
+		Sleep(512);
 
 		cout << '\n';
 	}

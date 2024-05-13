@@ -1,0 +1,102 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+
+using namespace std;
+
+vector<int> distances;
+
+void bfs(vector<vector<int>> &g, int start)
+{
+	queue<int> q;
+	vector<bool> visited(g.size(), false);
+
+	q.push(start);
+	visited[start] = true;
+	distances[start] = 0;
+
+	while (!q.empty())
+	{
+		int node = q.front();
+		q.pop();
+
+		for (int neighbor : g[node])
+		{
+			if (!visited[neighbor])
+			{
+				q.push(neighbor);
+				visited[neighbor] = true;
+				distances[neighbor] = distances[node] + 1;
+			}
+		}
+	}
+}
+
+void graph_input(vector<vector<int>> &g)
+{
+	int n = g.size();
+
+	for (int i = 0; i < n; i++)
+	{
+		int num_neighbors;
+		cin >> num_neighbors;
+		for (int j = 0; j < num_neighbors; j++)
+		{
+			int neighbor;
+			cin >> neighbor;
+			g[i].push_back(neighbor);
+		}
+	}
+}
+
+int max_in_min(vector<vector<int>> &g)
+{
+	int n = g.size();
+
+	bfs(g, 0);
+
+	int max(0), maxI(0);
+	for (int i = 0; i < n; i++)
+	{
+		if (max < distances[i])
+		{
+			max = distances[i];
+			maxI = i;
+		}
+	}
+
+	bfs(g, maxI);
+
+	for (int i = 0; i < n; i++)
+		max = max < distances[i] ? distances[i] : max;
+
+	return max;
+}
+
+int main()
+{
+	int n;
+	cin >> n;
+
+	distances.resize(n, -1);
+
+	vector<vector<int>> g(n);
+	graph_input(g);
+	
+	cout << "\n\033[32m" << max_in_min(g) << "\033[0m";
+
+	return 0;
+}
+
+/*
+
+7
+2 1 2
+3 0 3 4
+2 0 5
+1 1
+1 1
+2 2 6
+1 5
+
+*/
