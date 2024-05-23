@@ -1,0 +1,129 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <windows.h>
+#include <iomanip>
+#include <bitset>
+
+using namespace std;
+
+vector<vector<pair<int, int>>> dist;
+// first - dist, second - level
+vector<vector<int>> mem;
+pair<int, int> s;
+pair<int, int> f;
+
+vector<int> dx{0, 0, 1, -1};
+vector<int> dy{1, -1, 0, 0};
+
+bool is_passable_corridor(vector<vector<char>> &g, int i, int j)
+{
+	if (i >= 0 && j >= 0 && i < g.size() && j < g[i].size())
+		if (g[i][j] != '#')
+			return true;
+
+	return false;
+}
+
+void labirint_input(vector<vector<char>> &g, int n, int m)
+{
+	char c;
+	int cnt = 1;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			cin >> c;
+
+			if (c == 'S')
+				s = {i, j};
+			if (c == 'F')
+				f = {i, j};
+			if (c == '$')
+				mem[i][j] = cnt++;
+			g[i].push_back(c);
+		}
+	}
+}
+int T;
+void bfs(vector<vector<char>> &g, int i, int j)
+{
+	queue<pair<int, int>> q;
+	q.push({i, j});
+
+	dist[i][j] = {0, 1};
+	// int check = 0;
+	while (!q.empty())
+	{
+		auto curr_point = q.front();
+		int curr_x = curr_point.first;
+		int curr_y = curr_point.second;
+
+		q.pop();
+
+		for (int k = 0, x, y; k < 4; k++)
+		{
+			x = curr_x + dx[k];
+			y = curr_y + dy[k];
+
+			if (is_passable_corridor(g, x, y) &&
+					__builtin_popcount(dist[x][y].second) >= __builtin_popcount(dist[curr_x][curr_y].second) &&
+					dist[curr_x][curr_y].first + 1 < dist[x][y].first && dist[curr_x][curr_y].first + 1 <= T)
+			{
+				q.push({x, y});
+				dist[x][y].first = dist[curr_x][curr_y].first + 1;
+				dist[x][y].second = dist[curr_x][curr_y].second;
+				if (g[x][y] == '$')
+				{
+					dist[x][y].second += (1 << mem[x][y]);
+				}
+			}
+		}
+	}
+}
+
+int main()
+{
+
+	int n, m;
+	cin >> n >> m >> T;
+
+	dist.resize(n, vector<pair<int, int>>(m, {-1, 0}));
+	mem.resize(n, vector<int>(m));
+
+	vector<vector<char>> g(n);
+
+	labirint_input(g, n, m);
+
+	bfs(g, s.first, s.second);
+
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			Sleep(128);
+			cout << setw(4) << dist[i][j].first;
+		}
+		Sleep(512);
+
+		cout << '\n';
+	}
+	cout << "\033[0m\n";
+
+	Sleep(1000);
+	// std::cout << "\033[32m" << dist[f.first][f.second] << "\033[0m";
+
+	return 0;
+}
+
+/*
+
+6 6 30
+S # . . $ #
+. . . # . .
+# . . # . #
+$ . # # . .
+# . . . . .
+$ . . # . F
+
+*/
