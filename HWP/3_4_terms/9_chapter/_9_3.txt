@@ -5,7 +5,7 @@ const int mod = 1000000007;
 
 long long countnumbers(int n)
 {
-	std::vector<long long> dp[n + 1][2];
+	std::vector<std::vector<long long>> dp(n + 1, std::vector<long long>(2, 0));
 
 	dp[1][0] = 1; // количество чисел с n=1 цифр, заканчивающихся на 0
 	dp[1][1] = 1; // количество чисел с n=1 цифр, заканчивающихся на 1
@@ -24,8 +24,7 @@ int main()
 	int n;
 	std::cin >> n;
 
-	int res = countnumbers(n);
-	std::cout << res;
+	std::cout << countnumbers(n) << '\n';
 
 	return 0;
 }
